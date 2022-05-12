@@ -19,6 +19,11 @@ class UserController extends Controller
 
     public function store() 
     {
+        request()->validate([
+            'role' => 'required',
+            'user' => 'required',
+        ]);
+
         $user = User::where('email', request('email'))->first();
         $user->assignRole(request('roles'));
         return back()->with('success', "User {$user->email} has been assign role!");

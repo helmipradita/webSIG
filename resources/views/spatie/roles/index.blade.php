@@ -1,6 +1,11 @@
 @extends('layouts.back')
 
 @section('content')
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     <div class="card mb-4">
         <div class="card-header">Create new Role</div>
         <div class="card-body">

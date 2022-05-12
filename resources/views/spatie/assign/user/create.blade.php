@@ -35,6 +35,9 @@
                 <div class="mb-3">
                     <label for="user">User</label>
                     <input type="text" name="email" id="user" class="form-control">
+                    @error('user')
+                        <div class="text-danger mt-2 d-block">{{ $message }}</div>                        
+                    @enderror
                 </div>
 
                 <div class="mb-3">
@@ -44,6 +47,9 @@
                             <option value="{{ $role->id }}">{{ $role->name }}</option>
                         @endforeach
                     </select>
+                    @error('role')
+                        <div class="text-danger mt-2 d-block">{{ $message }}</div>                        
+                    @enderror
                 </div>
 
                 <button type="submit" class="btn btn-primary">Assign</button>

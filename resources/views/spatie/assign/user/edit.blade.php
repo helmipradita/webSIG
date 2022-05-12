@@ -32,6 +32,9 @@
                 <div class="mb-3">
                     <label for="user">User</label>
                     <input type="text" name="email" id="user" class="form-control" value="{{ $user->email }}">
+                    @error('user')
+                        <div class="text-danger mt-2 d-block">{{ $message }}</div>                        
+                    @enderror
                 </div>
 
                 <div class="mb-3">
@@ -41,6 +44,9 @@
                             <option {{ $user->roles()->find($role->id) ? 'selected' : '' }} value="{{ $role->id }}">{{ $role->name }}</option>
                         @endforeach
                     </select>
+                    @error('role')
+                        <div class="text-danger mt-2 d-block">{{ $message }}</div>                        
+                    @enderror
                 </div>
 
                 <button type="submit" class="btn btn-primary">Sync</button>
