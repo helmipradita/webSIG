@@ -23,7 +23,6 @@ class UserController extends Controller
             'role' => 'required',
             'user' => 'required',
         ]);
-
         $user = User::where('email', request('email'))->first();
         $user->assignRole(request('roles'));
         return back()->with('success', "User {$user->email} has been assign role!");
