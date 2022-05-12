@@ -39,6 +39,7 @@
             <a href="{{ route('roles.index') }}" class="list-group-item list-group-item-action">Roles</a>
             <a href="{{ route('permissions.index') }}" class="list-group-item list-group-item-action">Permissions</a>
             <a href="{{ route('assign.create') }}" class="list-group-item list-group-item-action">Assign Permission</a>
+            <a href="{{ route('assign.user.create') }}" class="list-group-item list-group-item-action">Permission to Users</a>
         </div>
     </div>
     @endcan

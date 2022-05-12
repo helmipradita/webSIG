@@ -29,6 +29,11 @@ Route::middleware('has.role')->prefix('dashboard')->group(function () {
         Route::post('assignable', [App\Http\Controllers\Permissions\AssignController::class, 'store']);
         Route::get('assignable/{role}/edit', [App\Http\Controllers\Permissions\AssignController::class, 'edit'])->name('assign.edit');
         Route::put('assignable/{role}/edit', [App\Http\Controllers\Permissions\AssignController::class, 'update']);
+        //User
+        Route::get('assign/user', [App\Http\Controllers\Permissions\UserController::class, 'create'])->name('assign.user.create');
+        Route::post('assign/user', [App\Http\Controllers\Permissions\UserController::class, 'store']);
+        Route::get('assign/{user}/user', [App\Http\Controllers\Permissions\UserController::class, 'edit'])->name('assign.user.edit');
+        Route::put('assign/{user}/user', [App\Http\Controllers\Permissions\UserController::class, 'update']);
 
         Route::prefix('roles')->group(function () {
             Route::get('', [App\Http\Controllers\Permissions\RoleController::class, 'index'])->name('roles.index');
