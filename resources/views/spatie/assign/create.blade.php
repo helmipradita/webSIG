@@ -54,7 +54,7 @@
                     </select>
                 </div>
 
-                <button type="submit" class="btn btn-secondary">Assign</button>
+                <button type="submit" class="btn btn-primary">Assign</button>
             </form>
         </div>
     </div>
@@ -77,7 +77,9 @@
                         <td>{{ $role->name }}</td>
                         <td>{{ $role->guard_name }}</td>
                         <td>{{ implode(', ', $role->getPermissionNames()->toArray()) }}</td>
-                        <td><a href="{{ route('assign.edit', $role) }}">Sync</a></td>
+                        <td>
+                            <a href="{{ route('assign.edit', $role) }}" class="btn btn-primary btn-sm">Sync</a>
+                        </td>
                     </tr>
                 @endforeach
             </table>

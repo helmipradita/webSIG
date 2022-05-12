@@ -54,7 +54,8 @@
                     </select>
                 </div>
 
-                <button type="submit" class="btn btn-secondary">Sync</button>
+                <button type="submit" class="btn btn-primary">Sync</button>
+                <a class="text-danger mx-3" href="{{ route('assign.create') }}">Cancel</a>
             </form>
         </div>
     </div>

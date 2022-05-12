@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="card mb-4">
-        <div class="card-header"><b>Create new Role</b></div>
+        <div class="card-header">Create new Role</div>
         <div class="card-body">
             <form action="{{ route('roles.create') }}" method="post">
                 @csrf
@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="card">
-        <div class="card-header"><b>Table of Role</b></div>
+        <div class="card-header">Table of Role</div>
         <div class="card-body">
             <table class="table table-hover">
                 <tr>

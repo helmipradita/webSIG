@@ -6,4 +6,4 @@
     <label class="form-label" for="guard_name">Guard Name</label>
     <input type="text" name="guard_name" id="guard_name" class="form-control" value="{{ old('guard_name') ?? $permission->guard_name }}" disabled>
 </div>
-<button type="submit" class="btn btn-primary">{{ $submit }}</button
+<button type="submit" class="btn btn-primary">{{ $submit }}</button>

@@ -46,7 +46,7 @@
                     </select>
                 </div>
 
-                <button type="submit" class="btn btn-secondary">Assign</button>
+                <button type="submit" class="btn btn-primary">Assign</button>
             </form>
         </div>
     </div>
@@ -67,7 +67,7 @@
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ implode(', ', $user->getRoleNames()->toArray()) }}</td>
-                        <td><a href="{{ route('assign.user.edit', $user) }}">Sync</a></td>
+                        <td><a href="{{ route('assign.user.edit', $user) }}" class="btn btn-primary btn-sm">Sync</a></td>
                     </tr>
                 @endforeach
             </table>

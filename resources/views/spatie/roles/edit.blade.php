@@ -8,6 +8,7 @@
                 @csrf
                 @method('PUT')
                 @include('spatie.roles.partials.form-control')
+                <a class="text-danger mx-3" href="{{ route('roles.index') }}">Cancel</a>
             </form>
         </div>
     </div>

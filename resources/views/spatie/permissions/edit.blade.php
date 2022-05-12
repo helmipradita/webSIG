@@ -8,6 +8,7 @@
                 @csrf
                 @method('PUT')
                 @include('spatie.permissions.partials.form-control')
+                <a class="text-danger mx-3" href="{{ route('permissions.index') }}">Cancel</a>
             </form>
         </div>
     </div>
