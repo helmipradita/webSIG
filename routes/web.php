@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +20,32 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::middleware('has.role',)->group(function () {
-    Route::view('dashboard', 'dashboard');
+
+Route::middleware('has.role')->prefix('dashboard')->group(function () {
+    Route::view('/', 'dashboard')->name('dashboard');
+
+    Route::prefix('role-and-permission')->namespace('Permissions')->group(function () {
+        Route::get('assignable', [App\Http\Controllers\Permissions\AssignController::class, 'create'])->name('assign.create');
+        Route::post('assignable', [App\Http\Controllers\Permissions\AssignController::class, 'store']);
+        Route::get('assignable/{role}/edit', [App\Http\Controllers\Permissions\AssignController::class, 'edit'])->name('assign.edit');
+        Route::put('assignable/{role}/edit', [App\Http\Controllers\Permissions\AssignController::class, 'update']);
+
+        Route::prefix('roles')->group(function () {
+            Route::get('', [App\Http\Controllers\Permissions\RoleController::class, 'index'])->name('roles.index');
+            Route::post('create', [App\Http\Controllers\Permissions\RoleController::class, 'store'])->name('roles.create');
+            Route::get('{role}/edit', [App\Http\Controllers\Permissions\RoleController::class, 'edit'])->name('roles.edit');
+            Route::put('{role}/edit', [App\Http\Controllers\Permissions\RoleController::class, 'update']);
+            Route::get('{role}/delete', [App\Http\Controllers\Permissions\RoleController::class, 'destroy'])->name('roles.delete');
+        });
+
+        Route::prefix('permissions')->group(function () {
+            Route::get('', [App\Http\Controllers\Permissions\PermissionController::class, 'index'])->name('permissions.index');
+            Route::post('create', [App\Http\Controllers\Permissions\PermissionController::class, 'store'])->name('permissions.create');
+            Route::get('{permission}/edit', [App\Http\Controllers\Permissions\PermissionController::class, 'edit'])->name('permissions.edit');
+            Route::put('{permission}/edit', [App\Http\Controllers\Permissions\PermissionController::class, 'update']);
+            Route::get('{permission}/delete', [App\Http\Controllers\Permissions\PermissionController::class, 'destroy'])->name('permissions.delete');
+        });
+    });
 });
 
 
