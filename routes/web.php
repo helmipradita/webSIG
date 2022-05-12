@@ -19,4 +19,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::middleware('has.role',)->group(function () {
+    Route::view('dashboard', 'dashboard');
+});
+
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
