@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +17,10 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
+    // $user = User::get()->first();
+    // // $role1 = Role::create(['name' => 'super admin']);
+    // $user->assignRole('super admin');
+    // dd($user);
     return view('welcome');
 });
 
