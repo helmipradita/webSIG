@@ -25,8 +25,8 @@ class HasRoleMiddleware
             } else {
                 abort(403);
             }
-        } else 
-        {
+        } 
+        else {
             abort(404);
         }
         

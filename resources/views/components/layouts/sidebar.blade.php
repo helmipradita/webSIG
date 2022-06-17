@@ -1,12 +1,9 @@
 <div>
-    @can('create post')
+    @can('create product')
     <div class="mb-4">
-        <small class="d-block text-secondary text-uppercase">Post</small>
+        <small class="d-block text-secondary text-uppercase">product</small>
         <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action">
-                Create new post
-            </a>
-            <a href="#" class="list-group-item list-group-item-action">Data table posts</a>
+            <a href="{{ route('products.index') }}" class="list-group-item list-group-item-action {{ Request::is('dashboard/products') ? 'active' : '' }}">Data table products</a>
         </div>
     </div>
     @endcan
@@ -36,10 +33,10 @@
     <div class="mb-4">
         <small class="d-block text-secondary text-uppercase">role & permission</small>
         <div class="list-group">
-            <a href="{{ route('roles.index') }}" class="list-group-item list-group-item-action">Roles</a>
-            <a href="{{ route('permissions.index') }}" class="list-group-item list-group-item-action">Permissions</a>
-            <a href="{{ route('assign.create') }}" class="list-group-item list-group-item-action">Assign Permission</a>
-            <a href="{{ route('assign.user.create') }}" class="list-group-item list-group-item-action">Permission to Users</a>
+            <a href="{{ route('roles.index') }}" class="list-group-item list-group-item-action {{ Request::is('dashboard/role-and-permission/roles') ? 'active' : '' }}">Roles</a>
+            <a href="{{ route('permissions.index') }}" class="list-group-item list-group-item-action {{ Request::is('dashboard/role-and-permission/permissions') ? 'active' : '' }}">Permissions</a>
+            <a href="{{ route('assign.create') }}" class="list-group-item list-group-item-action {{ Request::is('dashboard/role-and-permission/assignable') ? 'active' : '' }}">Assign Permission</a>
+            <a href="{{ route('assign.user.create') }}" class="list-group-item list-group-item-action {{ Request::is('dashboard/role-and-permission/assign/user') ? 'active' : '' }}">Permission to Users</a>
         </div>
     </div>
     @endcan

@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\DashboardProductController;
+use App\Http\Controllers\ProductController;
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -16,21 +19,25 @@ use Spatie\Permission\Models\Role;
 |
 */
 
-Route::get('/', function () {
-    // $user = User::get()->first();
-    // // $role1 = Role::create(['name' => 'super admin']);
-    // $user->assignRole('super admin');
-    // dd($user);
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     // $user = User::get()->find(1);
+//     // //$role1 = Role::create(['name' => 'super admin']);
+//     // $user->assignRole('penjual');
+//     // dd($user);
+//     return view('welcome');
+// });
 
 Auth::routes();
 
+Route::get('/dashboard/products/checkSlug', [DashboardProductController::class, 'checkSlug'])->middleware('auth');
+Route::resource('/dashboard/products', DashboardProductController::class)->middleware('auth');
 
 Route::middleware('has.role')->prefix('dashboard')->group(function () {
     Route::view('/', 'dashboard')->name('dashboard');
 
-    Route::prefix('role-and-permission')->namespace('Permissions')->group(function () {
+    
+
+    Route::middleware('role:super admin')->prefix('role-and-permission')->namespace('Permissions')->group(function () {
         Route::get('assignable', [App\Http\Controllers\Permissions\AssignController::class, 'create'])->name('assign.create');
         Route::post('assignable', [App\Http\Controllers\Permissions\AssignController::class, 'store']);
         Route::get('assignable/{role}/edit', [App\Http\Controllers\Permissions\AssignController::class, 'edit'])->name('assign.edit');
@@ -61,3 +68,33 @@ Route::middleware('has.role')->prefix('dashboard')->group(function () {
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
+Route::get('/', function() {
+    return view('index', [
+        "title" => "Index",
+        "active" => "index",
+    ]);
+});
+
+Route::get('/about', function() {
+    return view('about', [
+        "title" => "About",
+        "active" => "about",
+        "name" => "Helmi Pradita",
+        "email" => "mr.hellmii@gmail.com",
+    ]);
+});
+
+Route::get('/products', [ProductController::class, 'index']);
+Route::get('/products/{product:slug}', [ProductController::class, 'show']);
+
+Route::get('/categories', function()
+{
+    return view('categories', [
+        'title' => 'Halaman Categories',
+        "active" => "categories",
+        'categories' => Category::all(),
+    ]);
+});

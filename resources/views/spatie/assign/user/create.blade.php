@@ -33,9 +33,9 @@
             <form action="{{ route('assign.user.create') }}" method="post">
                 @csrf
                 <div class="mb-3">
-                    <label for="user">User</label>
-                    <input type="text" name="email" id="user" class="form-control">
-                    @error('user')
+                    <label for="email">Email</label>
+                    <input type="text" name="email" id="email" class="form-control">
+                    @error('email')
                         <div class="text-danger mt-2 d-block">{{ $message }}</div>                        
                     @enderror
                 </div>
@@ -47,7 +47,7 @@
                             <option value="{{ $role->id }}">{{ $role->name }}</option>
                         @endforeach
                     </select>
-                    @error('role')
+                    @error('roles')
                         <div class="text-danger mt-2 d-block">{{ $message }}</div>                        
                     @enderror
                 </div>
