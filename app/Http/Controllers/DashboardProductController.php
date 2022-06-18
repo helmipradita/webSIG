@@ -19,7 +19,7 @@ class DashboardProductController extends Controller
      */
     public function index()
     {
-        return view('products.index', [
+        return view('dashboard.products.index', [
             'products' => Product::where('user_id', auth()->user()->id)->get()
         ]);
     }
@@ -31,7 +31,7 @@ class DashboardProductController extends Controller
      */
     public function create()
     {
-        return view('products.create', [
+        return view('dashboard.products.create', [
             'categories' => Category::all()
         ]);
     }
@@ -72,7 +72,7 @@ class DashboardProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('products.show', [
+        return view('dashboard.products.show', [
             'product' => $product
         ]);
     }
@@ -85,7 +85,7 @@ class DashboardProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('products.edit', [
+        return view('dashboard.products.edit', [
             'product' => $product,
             'categories' => Category::all()
         ]);

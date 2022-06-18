@@ -12,7 +12,7 @@ class RoleController extends Controller
     {
         $roles = Role::get();
         $role = new Role;
-        return view('spatie.roles.index', compact('roles', 'role'));
+        return view('dashboard.spatie.roles.index', compact('roles', 'role'));
     }
 
     public function store() 
@@ -31,7 +31,7 @@ class RoleController extends Controller
 
     public function edit(Role $role) 
     {
-        return view('spatie.roles.edit', [
+        return view('dashboard.spatie.roles.edit', [
             'role' => $role,
             'submit' => 'Update',
         ]);

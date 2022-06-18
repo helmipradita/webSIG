@@ -12,7 +12,7 @@ class PermissionController extends Controller
     {
         $permissions = Permission::get();
         $permission = new Permission;
-        return view('spatie.permissions.index', compact('permissions', 'permission'));
+        return view('dashboard.spatie.permissions.index', compact('permissions', 'permission'));
     }
 
     public function store() 
@@ -31,7 +31,7 @@ class PermissionController extends Controller
 
     public function edit(Permission $permission) 
     {
-        return view('spatie.permissions.edit', [
+        return view('dashboard.spatie.permissions.edit', [
             'permission' => $permission,
             'submit' => 'Update',
         ]);

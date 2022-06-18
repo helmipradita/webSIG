@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function create() 
     {
-        return view('spatie.assign.user.create', [
+        return view('dashboard.spatie.assign.user.create', [
             'roles' => Role::get(),
             'users' => User::has('roles')->get(),
         ]);
@@ -30,7 +30,7 @@ class UserController extends Controller
 
     public function edit(User $user) 
     {
-        return view('spatie.assign.user.edit', [
+        return view('dashboard.spatie.assign.user.edit', [
             'user' => $user,
             'roles' => Role::get(),
             'users' => User::has('roles')->get(),

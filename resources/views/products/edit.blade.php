@@ -1,8 +1,7 @@
 @extends('layouts.back')
 
 @section('content')
-    <div class="card">
-        <div class="card-header">Edit Products</div>
+        <div class="card-header">Edit Praoducts</div>
         <div class="card-body">
             <form action="/dashboard/products/{{ $product->slug }}" method="post" enctype="multipart/form-data">
                 @method('PUT')

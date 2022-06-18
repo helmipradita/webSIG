@@ -33,15 +33,14 @@ Route::get('/dashboard/products/checkSlug', [DashboardProductController::class, 
 Route::resource('/dashboard/products', DashboardProductController::class)->middleware('auth');
 
 Route::middleware('has.role')->prefix('dashboard')->group(function () {
-    Route::view('/', 'dashboard')->name('dashboard');
-
-    
+    Route::view('/', 'dashboard.index')->name('dashboard');
 
     Route::middleware('role:super admin')->prefix('role-and-permission')->namespace('Permissions')->group(function () {
         Route::get('assignable', [App\Http\Controllers\Permissions\AssignController::class, 'create'])->name('assign.create');
         Route::post('assignable', [App\Http\Controllers\Permissions\AssignController::class, 'store']);
         Route::get('assignable/{role}/edit', [App\Http\Controllers\Permissions\AssignController::class, 'edit'])->name('assign.edit');
         Route::put('assignable/{role}/edit', [App\Http\Controllers\Permissions\AssignController::class, 'update']);
+        
         //User
         Route::get('assign/user', [App\Http\Controllers\Permissions\UserController::class, 'create'])->name('assign.user.create');
         Route::post('assign/user', [App\Http\Controllers\Permissions\UserController::class, 'store']);
@@ -68,8 +67,6 @@ Route::middleware('has.role')->prefix('dashboard')->group(function () {
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
 
 Route::get('/', function() {
     return view('index', [

@@ -10,7 +10,7 @@ class AssignController extends Controller
 {
     public function create() 
     {
-        return view('spatie.assign.create', [
+        return view('dashboard.spatie.assign.create', [
             'roles' => Role::get(),
             'permissions' => Permission::get(),
         ]);
@@ -31,7 +31,7 @@ class AssignController extends Controller
 
     public function edit(Role $role) 
     {
-        return view('spatie.assign.sync',[
+        return view('dashboard.spatie.assign.sync',[
             'role' => $role,
             'roles' => Role::get(),
             'permissions' => Permission::get(),
