@@ -18,8 +18,8 @@
           <thead>
             <tr>
                 <th>#</th>
-                <th>Title</th>
-                <th>Category</th>
+                <th>Nama Produk</th>
+                <th>Kategori</th>
                 <th>Action</th>
             </tr>
           </thead>

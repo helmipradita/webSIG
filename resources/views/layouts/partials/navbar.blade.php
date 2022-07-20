@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="#">webSIG</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -7,16 +7,30 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link {{ ($active == "") ? 'active' : '' }}" href="/">Index</a>
+            <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">Beranda</a>
           </li>
+          {{-- <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Kecamatan
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                  @foreach ($kecamatan as $data)
+                    <li><a class="dropdown-item" href="/kecamatan/{{ $data->id_kecamatan }}">{{ $data->kecamatan }}</a></li>
+                  @endforeach
+                </ul>
+              </li>
+            </ul>
+          </div> --}}
           <li class="nav-item">
-            <a class="nav-link {{ ($active === "about") ? 'active' : '' }}" href="/about">About</a>
+            <a class="nav-link {{ Request::is('products') ? 'active' : '' }}" href="/products">Produk</a>
           </li>
+          {{-- <li class="nav-item">
+            <a class="nav-link " href="/categories">Categories</a>
+          </li> --}}
           <li class="nav-item">
-            <a class="nav-link {{ ($active === "products") ? 'active' : '' }}" href="/products">Products</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {{ ($active === "categories") ? 'active' : '' }}" href="/categories">Categories</a>
+            <a class="nav-link" href="/kontak">Kontak</a>
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">
@@ -46,13 +60,11 @@
                       {{ Auth::user()->name }}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                      <li><a class="dropdown-item" href="/home">Home</a></li>
+                      <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
                       <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
-                                      document.getElementById('logout-form').submit();">
-                         {{ __('Logout') }}
-                     </a></li>
+                      <li>
+                        <a class="dropdown-item" href="{{ url('/logout') }}"> logout </a>
+                      </li>
                     </ul>
                   </li>
                 </ul>

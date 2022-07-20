@@ -1,17 +1,17 @@
 <style>
-    .feather-48{
-        width: 48px;
-        height: 48px;
+    .feather-24{
+        width: 24px;
+        height: 24px;
     }
 </style>
 
 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
     <div class="position-sticky">
         <h1 class="sidebar-heading d-flex align-items-center px-3 mt-4 mb-3 flex-column text-muted text-bold">
-            <span data-feather="user" class="feather-48"></span> {{ auth()->user()->name }}
+            <span data-feather="user" class="feather-24"></span> {{ auth()->user()->name }}
         </h1>
         <ul class="nav flex-column">
-            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-1 mb-1 text-muted">
                 <span>Menu</span>
             </h6>
             <li class="nav-item">
@@ -21,7 +21,7 @@
                 </a>
             </li>
 
-            @can('create product')
+            @can('product')
             <li class="nav-item">
                 <a href="{{ route('products.index') }}" class="nav-link {{ Request::is('dashboard/products') ? 'active' : '' }}">
                     <span data-feather="file-text"></span>
@@ -30,25 +30,52 @@
             </li>
             @endcan
 
-            @can('create category')
+            @can('allproduct')
             <li class="nav-item">
-                <a href="{{ route('products.index') }}" class="nav-link">
+                <a href="{{ route('allproducts.index') }}" class="nav-link {{ Request::is('dashboard/allproducts') ? 'active' : '' }}">
                     <span data-feather="file-text"></span>
-                    Category
+                    All Produk
                 </a>
             </li>
             @endcan
 
-            @can('create user')
+            @can('kategori')
             <li class="nav-item">
-                <a href="{{ route('products.index') }}" class="nav-link">
+                <a href="{{ route('kategori.index') }}" class="nav-link">
                     <span data-feather="file-text"></span>
-                    User
+                    Kategori
                 </a>
             </li>
             @endcan
 
-            @can('assign permission')
+            @can('kecamatan')
+            <li class="nav-item">
+                <a href="{{ route('kecamatan.index') }}" class="nav-link">
+                    <span data-feather="file-text"></span>
+                    Kecamatan
+                </a>
+            </li>
+            @endcan
+
+            @can('tempat')
+            <li class="nav-item">
+                <a href="{{ route('tempat.index') }}" class="nav-link">
+                    <span data-feather="file-text"></span>
+                    Tempat
+                </a>
+            </li>
+            @endcan
+
+            @can('alluser')
+            <li class="nav-item">
+                <a href="{{ route('alluser.index') }}" class="nav-link">
+                    <span data-feather="file-text"></span>
+                    All User
+                </a>
+            </li>
+            @endcan
+
+            @can('permission')
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                 <span>Role & Permission</span>
             </h6>

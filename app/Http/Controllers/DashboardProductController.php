@@ -6,6 +6,7 @@ use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\WebModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -17,10 +18,18 @@ class DashboardProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->WebModel = new WebModel();
+    }
+    
     public function index()
     {
         return view('dashboard.products.index', [
-            'products' => Product::where('user_id', auth()->user()->id)->get()
+            'products' => Product::where('user_id', auth()->user()->id)->get(),
+            'kecamatan' => $this->WebModel->DataKecamatan(),
         ]);
     }
 
@@ -73,7 +82,7 @@ class DashboardProductController extends Controller
     public function show(Product $product)
     {
         return view('dashboard.products.show', [
-            'product' => $product
+            'product' => $product,
         ]);
     }
 

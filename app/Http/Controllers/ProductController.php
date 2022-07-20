@@ -5,10 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\WebModel;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->WebModel = new WebModel();
+    }
+
     public function index()
     {
         $title = '';
@@ -24,10 +30,12 @@ class ProductController extends Controller
         }
 
         return view('products', [
-            "title" => "All Product",
+            "title" => "Semua Produk",
             "active" => "products",
             // "products" => Product::all(),
             "products" => Product::latest()->filter(request(['search', 'category', 'author']))->paginate(7)->withQueryString(),
+            'kecamatan' => $this->WebModel->DataKecamatan(),
+            'categories' => Category::all()
         ]);
     }
 

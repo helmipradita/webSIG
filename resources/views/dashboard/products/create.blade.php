@@ -8,7 +8,7 @@
     <form action="/dashboard/products" method="post" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
-            <label class="form-label" for="title">Title</label>
+            <label class="form-label" for="title">Nama Produk</label>
             <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" required autofocus>
             @error('title')
                 <div class="invalid-feedback">
@@ -26,7 +26,7 @@
             @enderror
         </div>
         <div class="mb-3">
-            <label class="form-label" for="category">Category</label>
+            <label class="form-label" for="category">Kategori</label>
             <select class="form-select" name="category_id">
                 @foreach($categories as $category)
                     @if (old('category_id') == $category->id)
@@ -39,7 +39,7 @@
             </select>
         </div>
         <div class="mb-3">
-            <label for="formFile" class="form-label">Product Image</label>
+            <label for="formFile" class="form-label">Gambar Produk</label>
             <img class="img-preview img-fluid mb-3 col-sm-6">
             <input class="form-control @error('image') is-invalid @enderror"  readonly value="{{ old('image') }}" type="file" id="image" name="image" onchange="previewImage()">
             @error('image')
@@ -49,7 +49,7 @@
             @enderror
         </div>
         <div class="mb-3">
-            <label class="form-label" for="body">Body</label>
+            <label class="form-label" for="body">Deskripsi Produk</label>
             @error('body')
                 <p class="text-danger">{{ $message }}</p>
             @enderror

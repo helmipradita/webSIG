@@ -18,16 +18,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Permission::create(['name' => 'create product']);
-        Permission::create(['name' => 'create category']);
-        Permission::create(['name' => 'show user']);
-        Permission::create(['name' => 'assign permission']);
+        Permission::create(['name' => 'product']);
+        Permission::create(['name' => 'allproduct']);
+        Permission::create(['name' => 'kategori']);
+        Permission::create(['name' => 'kecamatan']);
+        Permission::create(['name' => 'tempat']);
+        Permission::create(['name' => 'alluser']);
+        Permission::create(['name' => 'permission']);
 
-        $role1 = Role::create(['name' => 'super admin']);
-        $role1->givePermissionTo('create product');
-        $role1->givePermissionTo('create category');
-        $role1->givePermissionTo('show user');
-        $role1->givePermissionTo('assign permission');
+        $role1 = Role::create(['name' => 'admin']);
+        $role1->givePermissionTo('product');
+        $role1->givePermissionTo('allproduct');
+        $role1->givePermissionTo('kategori');
+        $role1->givePermissionTo('kecamatan');
+        $role1->givePermissionTo('tempat');
+        $role1->givePermissionTo('alluser');
+        $role1->givePermissionTo('permission');
 
         $role2 = Role::create(['name' => 'pembeli']);
 

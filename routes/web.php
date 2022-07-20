@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\DashboardProductController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AllProductsController;
+use App\Http\Controllers\KategoriController;
 use App\Models\Category;
 use App\Models\User;
+use App\Models\WebModel;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
@@ -32,8 +35,46 @@ Auth::routes();
 Route::get('/dashboard/products/checkSlug', [DashboardProductController::class, 'checkSlug'])->middleware('auth');
 Route::resource('/dashboard/products', DashboardProductController::class)->middleware('auth');
 
+Route::get('/dashboard/allproducts/checkSlug', [AllProductsController::class, 'checkSlug'])->middleware('auth');
+Route::get('/dashboard/allproducts', [App\Http\Controllers\AllProductsController::class, 'index'])->name('allproducts.index');
+Route::post('/dashboard/allproducts', [App\Http\Controllers\AllProductsController::class, 'store'])->name('allproducts.create');
+Route::get('/dashboard/allproducts/{slug}/edit', [App\Http\Controllers\AllProductsController::class, 'edit'])->name('allproducts.edit');
+
 Route::middleware('has.role')->prefix('dashboard')->group(function () {
-    Route::view('/', 'dashboard.index')->name('dashboard');
+    Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+
+    Route::post('change-password', [App\Http\Controllers\ChangePasswordController::class, 'store'])->name('change.password');
+
+    Route::get('profile/edit/{id}', [App\Http\Controllers\DashboardController::class, 'edit'])->name('profile.edit');
+    Route::post('profile/update/{id}', [App\Http\Controllers\DashboardController::class, 'update']);
+
+    //Kecamatan
+    Route::get('kecamatan', [App\Http\Controllers\KecamatanController::class, 'index'])->name('kecamatan.index');
+    Route::post('kecamatan/create', [App\Http\Controllers\KecamatanController::class, 'store'])->name('kecamatan.create');
+    Route::get('kecamatan/edit/{id_kecamatan}', [App\Http\Controllers\KecamatanController::class, 'edit'])->name('kecamatan.edit');
+    Route::post('kecamatan/update/{id_kecamatan}', [App\Http\Controllers\KecamatanController::class, 'update']);
+    Route::get('kecamatan/delete/{id_kecamatan}', [App\Http\Controllers\KecamatanController::class, 'delete'])->name('kecamatan.delete');
+
+    //Tempat
+    Route::get('tempat', [App\Http\Controllers\TempatController::class, 'index'])->name('tempat.index');
+    Route::post('tempat/create', [App\Http\Controllers\TempatController::class, 'store'])->name('tempat.create');
+    Route::get('tempat/edit/{id_tempat}', [App\Http\Controllers\TempatController::class, 'edit'])->name('tempat.edit');
+    Route::post('tempat/update/{id_tempat}', [App\Http\Controllers\TempatController::class, 'update']);
+    Route::get('tempat/delete/{id_tempat}', [App\Http\Controllers\TempatController::class, 'delete'])->name('tempat.delete');
+
+    //Kategori
+    Route::get('kategori', [App\Http\Controllers\KategoriController::class, 'index'])->name('kategori.index');
+    Route::post('kategori/create', [App\Http\Controllers\KategoriController::class, 'store'])->name('kategori.create');
+    Route::get('kategori/edit/{id}', [App\Http\Controllers\KategoriController::class, 'edit'])->name('kategori.edit');
+    Route::post('kategori/update/{id}', [App\Http\Controllers\KategoriController::class, 'update']);
+    Route::get('kategori/delete/{id}', [App\Http\Controllers\KategoriController::class, 'delete'])->name('kategori.delete');
+
+    //All User
+    Route::get('alluser', [App\Http\Controllers\AllUserController::class, 'index'])->name('alluser.index');
+    Route::post('alluser/create', [App\Http\Controllers\AllUserController::class, 'store'])->name('alluser.create');
+    Route::get('alluser/edit/{id}', [App\Http\Controllers\AllUserController::class, 'edit'])->name('alluser.edit');
+    Route::post('alluser/update/{id}', [App\Http\Controllers\AllUserController::class, 'update']);
+    Route::get('alluser/delete/{id}', [App\Http\Controllers\AllUserController::class, 'delete'])->name('alluser.delete');
 
     Route::middleware('role:super admin')->prefix('role-and-permission')->namespace('Permissions')->group(function () {
         Route::get('assignable', [App\Http\Controllers\Permissions\AssignController::class, 'create'])->name('assign.create');
@@ -68,24 +109,30 @@ Route::middleware('has.role')->prefix('dashboard')->group(function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/', function() {
-    return view('index', [
-        "title" => "Index",
-        "active" => "index",
-    ]);
-});
+Route::get('/', [App\Http\Controllers\WebController::class, 'index'])->name('index');
 
-Route::get('/about', function() {
-    return view('about', [
-        "title" => "About",
-        "active" => "about",
-        "name" => "Helmi Pradita",
-        "email" => "mr.hellmii@gmail.com",
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
+Route::get('/kecamatan/{id_kecamatan}', [App\Http\Controllers\WebController::class, 'kecamatan'])->name('kecamatan');
+
+Route::get('/detailtempat/{id_tempat}', [App\Http\Controllers\WebController::class, 'detailtempat'])->middleware('auth')->name('detailtempat');
+
+// Route::get('/', function() {
+//     return view('index', [
+//         "title" => "Index",
+//         "active" => "index",
+//     ]);
+// });
+
+Route::get('/kontak', function() {
+    return view('kontak', [
+        "title" => "Kontak",
+        "active" => "kontak",
     ]);
 });
 
 Route::get('/products', [ProductController::class, 'index']);
-Route::get('/products/{product:slug}', [ProductController::class, 'show']);
+Route::get('/products/{product:slug}', [ProductController::class, 'show'])->middleware('auth');
 
 Route::get('/categories', function()
 {
@@ -93,5 +140,6 @@ Route::get('/categories', function()
         'title' => 'Halaman Categories',
         "active" => "categories",
         'categories' => Category::all(),
+        'kecamatan' => WebModel::DataKecamatan(),
     ]);
 });

@@ -4,7 +4,8 @@
   <h1 class="mb-3 text-center">{{ $title }}</h1>  
   
   <div class="row justify-content-center mb-3">
-    <div class="col-md-6">
+    <div class="col-md-8">
+      <h5>Pencarian:</h5>
       <form action="/products">
         @if (request('category'))
             <input type="hidden" name="category" value="{{ request('category') }}">
@@ -13,10 +14,23 @@
             <input type="hidden" name="author" value="{{ request('author') }}">
         @endif
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Search..." name="search" value="{{ request('search') }}">
-          <button class="btn btn-dark" type="submit">Search</button>
+          <input type="text" class="form-control" placeholder="Pencarian berdasarkan judul & isi keterangan..." name="search" value="{{ request('search') }}">
+          <button class="btn btn-dark" type="submit">Cari</button>
         </div>
       </form>
+    </div>
+    <div class="col-md-4">
+      <h5>Filter Kategori Sayuran:</h5>
+      <div class="dropdown">
+        <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          -- Kategori Sayuran --
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          @foreach($categories as $category)
+            <li><a class="dropdown-item" href="/products?category={{ $category->slug }}">{{ $category->name }}</a></li>
+          @endforeach
+        </ul>
+      </div>
     </div>
   </div>
   
