@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Helmi Pradita',
             'username' => 'helmipradita',
             'email' => 'helmipradita@test.com',
-            'password' => bcrypt('password'),
+            'password' => bcrypt('password123'),
         ]);
         $superAdmin->assignRole($role1);
 
@@ -59,7 +59,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'kangkung',
         ]);
 
-        Product::factory(20)->create();
+        //Product::factory(20)->create();
 
         // Product::create([
         //     'title' => 'product ke satu',
