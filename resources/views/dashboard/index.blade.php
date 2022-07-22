@@ -29,7 +29,7 @@
             <a href="/dashboard/products" class="text-decoration-none text-black">  
               <div class="card-body">
                   <h3><span data-feather="file-text" class="feather-30"></span> {{ $products }}</h3>
-                  <p class="text-uppercase fw-bold">Product</p>
+                  <p class="text-uppercase fw-bold">Produk</p>
                 </div>
               </a>
             </div>
@@ -39,7 +39,7 @@
             <a href="/dashboard/categories" class="text-decoration-none text-black">  
               <div class="card-body">
                 <h3><span data-feather="list" class="feather-30"></span> {{ $categories }}</h3>
-                <p class="text-uppercase fw-bold">Category</p>
+                <p class="text-uppercase fw-bold">Kategori</p>
               </div>
             </a>
             </div>
@@ -48,8 +48,8 @@
           <div class="card text-dark bg-light mb-3" >
             <a href="/dashboard/kecamatan" class="text-decoration-none text-black">  
               <div class="card-body">
-                <h3><span data-feather="list" class="feather-30"></span> {{ $kecamatan }}</h3>
-                <p class="text-uppercase fw-bold">kecamatan</p>
+                <h3><span data-feather="map" class="feather-30"></span> {{ $kecamatan }}</h3>
+                <p class="text-uppercase fw-bold">Kecamatan</p>
               </div>
             </a>
             </div>

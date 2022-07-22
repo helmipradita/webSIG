@@ -76,7 +76,7 @@ Route::middleware('has.role')->prefix('dashboard')->group(function () {
     Route::post('alluser/update/{id}', [App\Http\Controllers\AllUserController::class, 'update']);
     Route::get('alluser/delete/{id}', [App\Http\Controllers\AllUserController::class, 'delete'])->name('alluser.delete');
 
-    Route::middleware('role:super admin')->prefix('role-and-permission')->namespace('Permissions')->group(function () {
+    Route::middleware('role:admin')->prefix('role-and-permission')->namespace('Permissions')->group(function () {
         Route::get('assignable', [App\Http\Controllers\Permissions\AssignController::class, 'create'])->name('assign.create');
         Route::post('assignable', [App\Http\Controllers\Permissions\AssignController::class, 'store']);
         Route::get('assignable/{role}/edit', [App\Http\Controllers\Permissions\AssignController::class, 'edit'])->name('assign.edit');

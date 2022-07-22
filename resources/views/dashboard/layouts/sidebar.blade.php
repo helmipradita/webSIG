@@ -33,7 +33,7 @@
             @can('allproduct')
             <li class="nav-item">
                 <a href="{{ route('allproducts.index') }}" class="nav-link {{ Request::is('dashboard/allproducts') ? 'active' : '' }}">
-                    <span data-feather="file-text"></span>
+                    <span data-feather="database"></span>
                     All Produk
                 </a>
             </li>
@@ -42,7 +42,7 @@
             @can('kategori')
             <li class="nav-item">
                 <a href="{{ route('kategori.index') }}" class="nav-link">
-                    <span data-feather="file-text"></span>
+                    <span data-feather="list"></span>
                     Kategori
                 </a>
             </li>
@@ -51,7 +51,7 @@
             @can('kecamatan')
             <li class="nav-item">
                 <a href="{{ route('kecamatan.index') }}" class="nav-link">
-                    <span data-feather="file-text"></span>
+                    <span data-feather="map"></span>
                     Kecamatan
                 </a>
             </li>
@@ -60,7 +60,7 @@
             @can('tempat')
             <li class="nav-item">
                 <a href="{{ route('tempat.index') }}" class="nav-link">
-                    <span data-feather="file-text"></span>
+                    <span data-feather="map-pin"></span>
                     Tempat
                 </a>
             </li>
@@ -69,7 +69,7 @@
             @can('alluser')
             <li class="nav-item">
                 <a href="{{ route('alluser.index') }}" class="nav-link">
-                    <span data-feather="file-text"></span>
+                    <span data-feather="users"></span>
                     All User
                 </a>
             </li>
