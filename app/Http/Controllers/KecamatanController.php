@@ -44,7 +44,7 @@ class KecamatanController extends Controller
     public function edit($id_kecamatan)
     {
         $data = [
-            'submit' => 'Edit',
+            'submit' => 'Update',
             'kecamatan' => $this->KecamatanModel->DetailData($id_kecamatan),
         ];
 

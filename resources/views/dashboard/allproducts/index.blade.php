@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">All Produk </h1>
+        <h1 class="h2">List All Produk </h1>
     </div>
     
     @if (session()->has('success'))
@@ -36,7 +36,7 @@
                         <form action="/dashboard/allproducts/{{ $product->slug }}" method="post" class="d-inline">
                             @method('delete')
                             @csrf
-                            <button class="btn btn-sm bg-danger" onclick="return confirm('Apakah Anda Yakin Menghapus Data?');">Hapus</button>
+                            <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda Yakin Menghapus Data?');">Hapus</button>
                             
                         </form>
                         {{-- <a href="{{ route('allproducts.edit', $product) }}" class="btn btn-primary btn-sm">Edit</a>

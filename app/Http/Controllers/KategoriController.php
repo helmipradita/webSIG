@@ -45,7 +45,7 @@ class KategoriController extends Controller
     public function edit($id)
     {
         $data = [
-            'submit' => 'Edit',
+            'submit' => 'Update',
             'kategori' => $this->KategoriModel->DetailData($id),
         ];
 

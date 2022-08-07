@@ -63,7 +63,7 @@
             <trix-editor input="body"></trix-editor>
         </div>
 
-        <button type="submit" class="btn btn-primary mb-4">Update Product</button>
+        <button type="submit" class="btn btn-primary mb-4">Update</button>
     </form>
 
 

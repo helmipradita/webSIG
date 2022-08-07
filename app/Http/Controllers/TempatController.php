@@ -75,7 +75,7 @@ class TempatController extends Controller
     public function edit($id_tempat)
     {
         $data = [
-            'submit' => 'Edit',
+            'submit' => 'Update',
             'tempat' => $this->TempatModel->DetailData($id_tempat),
             'kecamatan' => $this->KecamatanModel->AllData(),
         ];

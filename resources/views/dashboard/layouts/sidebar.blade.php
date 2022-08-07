@@ -23,7 +23,7 @@
 
             @can('product')
             <li class="nav-item">
-                <a href="{{ route('products.index') }}" class="nav-link {{ Request::is('dashboard/products') ? 'active' : '' }}">
+                <a href="{{ route('products.index') }}" class="nav-link {{ Request::is('dashboard/products*') ? 'active' : '' }}">
                     <span data-feather="file-text"></span>
                     Produk
                 </a>
@@ -41,7 +41,7 @@
 
             @can('kategori')
             <li class="nav-item">
-                <a href="{{ route('kategori.index') }}" class="nav-link">
+                <a href="{{ route('kategori.index') }}" class="nav-link {{ Request::is('dashboard/kategori*') ? 'active' : '' }}">
                     <span data-feather="list"></span>
                     Kategori
                 </a>
@@ -50,7 +50,7 @@
 
             @can('kecamatan')
             <li class="nav-item">
-                <a href="{{ route('kecamatan.index') }}" class="nav-link">
+                <a href="{{ route('kecamatan.index') }}" class="nav-link {{ Request::is('dashboard/kecamatan*') ? 'active' : '' }}">
                     <span data-feather="map"></span>
                     Kecamatan
                 </a>
@@ -59,7 +59,7 @@
 
             @can('tempat')
             <li class="nav-item">
-                <a href="{{ route('tempat.index') }}" class="nav-link">
+                <a href="{{ route('tempat.index') }}" class="nav-link {{ Request::is('dashboard/tempat*') ? 'active' : '' }}">
                     <span data-feather="map-pin"></span>
                     Tempat
                 </a>
@@ -68,7 +68,7 @@
 
             @can('alluser')
             <li class="nav-item">
-                <a href="{{ route('alluser.index') }}" class="nav-link">
+                <a href="{{ route('alluser.index') }}" class="nav-link {{ Request::is('dashboard/alluser') ? 'active' : '' }}">
                     <span data-feather="users"></span>
                     All User
                 </a>
@@ -81,25 +81,25 @@
             </h6>
                 <ul class="nav flex-column mb-2">
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('dashboard/role-and-permission/roles') ? 'active' : '' }}" href="{{ route('roles.index') }}">
+                        <a class="nav-link {{ Request::is('dashboard/role-and-permission/roles*') ? 'active' : '' }}" href="{{ route('roles.index') }}">
                             <span data-feather="tool"></span>
                             Roles
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('dashboard/role-and-permission/permissions') ? 'active' : '' }}" href="{{ route('permissions.index') }}">
+                        <a class="nav-link {{ Request::is('dashboard/role-and-permission/permissions*') ? 'active' : '' }}" href="{{ route('permissions.index') }}">
                             <span data-feather="tool"></span>
                             Permissions
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('dashboard/role-and-permission/assignable') ? 'active' : '' }}" href="{{ route('assign.create') }}">
+                        <a class="nav-link {{ Request::is('dashboard/role-and-permission/assignable*') ? 'active' : '' }}" href="{{ route('assign.create') }}">
                             <span data-feather="tool"></span>
                             Assign Permission
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('dashboard/role-and-permission/assign/user') ? 'active' : '' }}" href="{{ route('assign.user.create') }}">
+                        <a class="nav-link {{ Request::is('dashboard/role-and-permission/assign/user*') ? 'active' : '' }}" href="{{ route('assign.user.create') }}">
                             <span data-feather="tool"></span>
                             Permission to Users
                         </a>

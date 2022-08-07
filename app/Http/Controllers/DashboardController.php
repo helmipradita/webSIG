@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -26,6 +27,7 @@ class DashboardController extends Controller
     {
         $data = [
             'products' => DB::table('products')->count(),
+            'myproducts' => Product::where('user_id', auth()->user()->id)->count(),
             'categories' => DB::table('categories')->count(),
             'kecamatan' => DB::table('kecamatan')->count(),
             'tempat' => DB::table('tempat')->count(),

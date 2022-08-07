@@ -1,7 +1,7 @@
 @extends('dashboard.layouts.main')
 
 @section('content')
-    <div class="mt-4">
+    <div class="mt-2">
         @if(session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -20,12 +20,12 @@
         <div class="">
             <form action="{{ route('tempat.create') }}" method="post" enctype="multipart/form-data">
                 @csrf
-                @include('dashboard.tempat.partials.form-control', ['submit' => 'Create'])
+                @include('dashboard.tempat.partials.form-control', ['submit' => 'Tambah'])
             </form>
         </div>
     </div>
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Tempat</h1>
+        <h1 class="h2">List Tempat</h1>
     </div>
 
     <div class="table-responsive">

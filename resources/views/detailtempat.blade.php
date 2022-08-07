@@ -20,15 +20,12 @@
     <div class="row">
         <div class="col-md-4 mt-3">
             <h5>Nama Tempat:</h5>{{ $tempat->nama_tempat }}
-            <hr>
         </div>
         <div class="col-md-4 mt-3">
-            <h5>Kecamatan: </h5>{{ $tempat->nama_tempat }}
-            <hr>
+            <h5>Kecamatan: </h5>{{ $tempat->kecamatan }}
         </div>
         <div class="col-md-4 mt-3">
             <h5>Alamat:</h5>{{ $tempat->alamat }}
-            <hr>
         </div>
         <div class="col-md-12 mt-3">
             <h5>Deskirpsi: </h5>{{ $tempat->deskripsi }}

@@ -21,6 +21,26 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">&#128075; Halo, {{ auth()->user()->name }} </h1>
     </div>
+
+    @role('penjual')
+    <h3>Statistik Data <span data-feather="activity" class="feather-30">a</span></h3><hr>
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+          <div class="card text-dark bg-light mb-3" >
+            <a href="/dashboard/products" class="text-decoration-none text-black">  
+              <div class="card-body">
+                  <h3><span data-feather="file-text" class="feather-30"></span> {{ $myproducts }}</h3>
+                  <p class="text-uppercase fw-bold">Jumlah Produk Saya</p>
+                </div>
+              </a>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    @endrole
+
+    @role('admin')
     <h3>Statistik Data <span data-feather="activity" class="feather-30">a</span></h3><hr>
 
     <div class="row">
@@ -75,8 +95,9 @@
             </div>
         </div>
     </div>
-
     <br><br>
+    @endrole
+
     <h3>Setting Akun <span data-feather="tool" class="tool-30">a</span></h3><hr>
 
     <div class="row justify-content">

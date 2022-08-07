@@ -32,14 +32,6 @@ use Spatie\Permission\Models\Role;
 
 Auth::routes();
 
-Route::get('/dashboard/products/checkSlug', [DashboardProductController::class, 'checkSlug'])->middleware('auth');
-Route::resource('/dashboard/products', DashboardProductController::class)->middleware('auth');
-
-Route::get('/dashboard/allproducts/checkSlug', [AllProductsController::class, 'checkSlug'])->middleware('auth');
-Route::get('/dashboard/allproducts', [App\Http\Controllers\AllProductsController::class, 'index'])->name('allproducts.index');
-Route::post('/dashboard/allproducts', [App\Http\Controllers\AllProductsController::class, 'store'])->name('allproducts.create');
-Route::get('/dashboard/allproducts/{slug}/edit', [App\Http\Controllers\AllProductsController::class, 'edit'])->name('allproducts.edit');
-
 Route::middleware('has.role')->prefix('dashboard')->group(function () {
     Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
@@ -48,46 +40,47 @@ Route::middleware('has.role')->prefix('dashboard')->group(function () {
     Route::get('profile/edit/{id}', [App\Http\Controllers\DashboardController::class, 'edit'])->name('profile.edit');
     Route::post('profile/update/{id}', [App\Http\Controllers\DashboardController::class, 'update']);
 
-    //Kecamatan
-    Route::get('kecamatan', [App\Http\Controllers\KecamatanController::class, 'index'])->name('kecamatan.index');
-    Route::post('kecamatan/create', [App\Http\Controllers\KecamatanController::class, 'store'])->name('kecamatan.create');
-    Route::get('kecamatan/edit/{id_kecamatan}', [App\Http\Controllers\KecamatanController::class, 'edit'])->name('kecamatan.edit');
-    Route::post('kecamatan/update/{id_kecamatan}', [App\Http\Controllers\KecamatanController::class, 'update']);
-    Route::get('kecamatan/delete/{id_kecamatan}', [App\Http\Controllers\KecamatanController::class, 'delete'])->name('kecamatan.delete');
+    Route::get('products/checkSlug', [DashboardProductController::class, 'checkSlug'])->middleware(['role:admin|penjual']);
+    Route::resource('products', DashboardProductController::class)->middleware(['role:admin|penjual']);
 
-    //Tempat
-    Route::get('tempat', [App\Http\Controllers\TempatController::class, 'index'])->name('tempat.index');
-    Route::post('tempat/create', [App\Http\Controllers\TempatController::class, 'store'])->name('tempat.create');
-    Route::get('tempat/edit/{id_tempat}', [App\Http\Controllers\TempatController::class, 'edit'])->name('tempat.edit');
-    Route::post('tempat/update/{id_tempat}', [App\Http\Controllers\TempatController::class, 'update']);
-    Route::get('tempat/delete/{id_tempat}', [App\Http\Controllers\TempatController::class, 'delete'])->name('tempat.delete');
+    Route::middleware('role:admin')->group(function () {
+        //allproduk
+        Route::get('allproducts/checkSlug', [AllProductsController::class, 'checkSlug'])->middleware('auth');
+        Route::get('allproducts', [App\Http\Controllers\AllProductsController::class, 'index'])->name('allproducts.index');
+        Route::post('allproducts', [App\Http\Controllers\AllProductsController::class, 'store'])->name('allproducts.create');
+        Route::get('allproducts/{slug}/edit', [App\Http\Controllers\AllProductsController::class, 'edit'])->name('allproducts.edit');
 
-    //Kategori
-    Route::get('kategori', [App\Http\Controllers\KategoriController::class, 'index'])->name('kategori.index');
-    Route::post('kategori/create', [App\Http\Controllers\KategoriController::class, 'store'])->name('kategori.create');
-    Route::get('kategori/edit/{id}', [App\Http\Controllers\KategoriController::class, 'edit'])->name('kategori.edit');
-    Route::post('kategori/update/{id}', [App\Http\Controllers\KategoriController::class, 'update']);
-    Route::get('kategori/delete/{id}', [App\Http\Controllers\KategoriController::class, 'delete'])->name('kategori.delete');
+        //Kategori
+        Route::get('kategori', [App\Http\Controllers\KategoriController::class, 'index'])->name('kategori.index');
+        Route::post('kategori/create', [App\Http\Controllers\KategoriController::class, 'store'])->name('kategori.create');
+        Route::get('kategori/edit/{id}', [App\Http\Controllers\KategoriController::class, 'edit'])->name('kategori.edit');
+        Route::post('kategori/update/{id}', [App\Http\Controllers\KategoriController::class, 'update']);
+        Route::get('kategori/delete/{id}', [App\Http\Controllers\KategoriController::class, 'delete'])->name('kategori.delete');
 
-    //All User
-    Route::get('alluser', [App\Http\Controllers\AllUserController::class, 'index'])->name('alluser.index');
-    Route::post('alluser/create', [App\Http\Controllers\AllUserController::class, 'store'])->name('alluser.create');
-    Route::get('alluser/edit/{id}', [App\Http\Controllers\AllUserController::class, 'edit'])->name('alluser.edit');
-    Route::post('alluser/update/{id}', [App\Http\Controllers\AllUserController::class, 'update']);
-    Route::get('alluser/delete/{id}', [App\Http\Controllers\AllUserController::class, 'delete'])->name('alluser.delete');
+        //Kecamatan
+        Route::get('kecamatan', [App\Http\Controllers\KecamatanController::class, 'index'])->name('kecamatan.index');
+        Route::post('kecamatan/create', [App\Http\Controllers\KecamatanController::class, 'store'])->name('kecamatan.create');
+        Route::get('kecamatan/edit/{id_kecamatan}', [App\Http\Controllers\KecamatanController::class, 'edit'])->name('kecamatan.edit');
+        Route::post('kecamatan/update/{id_kecamatan}', [App\Http\Controllers\KecamatanController::class, 'update']);
+        Route::get('kecamatan/delete/{id_kecamatan}', [App\Http\Controllers\KecamatanController::class, 'delete'])->name('kecamatan.delete');
+
+        //Tempat
+        Route::get('tempat', [App\Http\Controllers\TempatController::class, 'index'])->name('tempat.index');
+        Route::post('tempat/create', [App\Http\Controllers\TempatController::class, 'store'])->name('tempat.create');
+        Route::get('tempat/edit/{id_tempat}', [App\Http\Controllers\TempatController::class, 'edit'])->name('tempat.edit');
+        Route::post('tempat/update/{id_tempat}', [App\Http\Controllers\TempatController::class, 'update']);
+        Route::get('tempat/delete/{id_tempat}', [App\Http\Controllers\TempatController::class, 'delete'])->name('tempat.delete');
+
+        //All User
+        Route::get('alluser', [App\Http\Controllers\AllUserController::class, 'index'])->name('alluser.index');
+        Route::post('alluser/create', [App\Http\Controllers\AllUserController::class, 'store'])->name('alluser.create');
+        Route::get('alluser/edit/{id}', [App\Http\Controllers\AllUserController::class, 'edit'])->name('alluser.edit');
+        Route::post('alluser/update/{id}', [App\Http\Controllers\AllUserController::class, 'update']);
+        Route::get('alluser/delete/{id}', [App\Http\Controllers\AllUserController::class, 'delete'])->name('alluser.delete');
+    });
 
     Route::middleware('role:admin')->prefix('role-and-permission')->namespace('Permissions')->group(function () {
-        Route::get('assignable', [App\Http\Controllers\Permissions\AssignController::class, 'create'])->name('assign.create');
-        Route::post('assignable', [App\Http\Controllers\Permissions\AssignController::class, 'store']);
-        Route::get('assignable/{role}/edit', [App\Http\Controllers\Permissions\AssignController::class, 'edit'])->name('assign.edit');
-        Route::put('assignable/{role}/edit', [App\Http\Controllers\Permissions\AssignController::class, 'update']);
-        
-        //User
-        Route::get('assign/user', [App\Http\Controllers\Permissions\UserController::class, 'create'])->name('assign.user.create');
-        Route::post('assign/user', [App\Http\Controllers\Permissions\UserController::class, 'store']);
-        Route::get('assign/{user}/user', [App\Http\Controllers\Permissions\UserController::class, 'edit'])->name('assign.user.edit');
-        Route::put('assign/{user}/user', [App\Http\Controllers\Permissions\UserController::class, 'update']);
-
+        //roles
         Route::prefix('roles')->group(function () {
             Route::get('', [App\Http\Controllers\Permissions\RoleController::class, 'index'])->name('roles.index');
             Route::post('create', [App\Http\Controllers\Permissions\RoleController::class, 'store'])->name('roles.create');
@@ -96,6 +89,7 @@ Route::middleware('has.role')->prefix('dashboard')->group(function () {
             Route::get('{role}/delete', [App\Http\Controllers\Permissions\RoleController::class, 'destroy'])->name('roles.delete');
         });
 
+        //permissions
         Route::prefix('permissions')->group(function () {
             Route::get('', [App\Http\Controllers\Permissions\PermissionController::class, 'index'])->name('permissions.index');
             Route::post('create', [App\Http\Controllers\Permissions\PermissionController::class, 'store'])->name('permissions.create');
@@ -103,6 +97,20 @@ Route::middleware('has.role')->prefix('dashboard')->group(function () {
             Route::put('{permission}/edit', [App\Http\Controllers\Permissions\PermissionController::class, 'update']);
             Route::get('{permission}/delete', [App\Http\Controllers\Permissions\PermissionController::class, 'destroy'])->name('permissions.delete');
         });
+
+        //assign permission
+        Route::get('assignable', [App\Http\Controllers\Permissions\AssignController::class, 'create'])->name('assign.create');
+        Route::post('assignable', [App\Http\Controllers\Permissions\AssignController::class, 'store']);
+        Route::get('assignable/{role}/edit', [App\Http\Controllers\Permissions\AssignController::class, 'edit'])->name('assign.edit');
+        Route::put('assignable/{role}/edit', [App\Http\Controllers\Permissions\AssignController::class, 'update']);
+        
+        //Permission to users
+        Route::get('assign/user', [App\Http\Controllers\Permissions\UserController::class, 'create'])->name('assign.user.create');
+        Route::post('assign/user', [App\Http\Controllers\Permissions\UserController::class, 'store']);
+        Route::get('assign/{user}/user', [App\Http\Controllers\Permissions\UserController::class, 'edit'])->name('assign.user.edit');
+        Route::put('assign/{user}/user', [App\Http\Controllers\Permissions\UserController::class, 'update']);
+
+        
     });
 });
 

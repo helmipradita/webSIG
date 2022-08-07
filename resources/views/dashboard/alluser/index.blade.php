@@ -10,7 +10,7 @@
     @endif
     
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">All User</h1>
+        <h1 class="h2">List All User</h1>
     </div>
 
     <div class="table-responsive">
@@ -36,7 +36,7 @@
                             <a href="{{ route('assign.edit', $data) }}" class="btn btn-primary btn-sm">Sync</a>
                         </td> --}}
                         <td>
-                            <a href="alluser/edit/{{ $data->id }}" class="btn btn-info">Edit</a>
+                            <a href="alluser/edit/{{ $data->id }}" class="btn btn-primary btn-sm">Edit</a>
                             
                             <a href="alluser/delete/{{ $data->id }}" onclick="return confirm('Apakah Anda Yakin Menghapus Data?');" class="btn btn-danger btn-sm">Delete</a>
                         </td>
